@@ -15,15 +15,35 @@ public class Student {
     }
 
     public static Comparator<Student> ComparatorByName() {
-        return new ComparatorByName();
+        Comparator<Student> comparator = new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return o1.name.compareTo(o2.name);
+            }
+        };
+        return comparator;
     }
 
     public static Comparator<Student> ComparatorByAge() {
-        return new ComparatorByAge();
+        Comparator<Student> comparator = new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return Integer.compare(o1.age, o2.age);
+            }
+        };
+        return comparator;
     }
 
     public static Comparator<Student> DefaultComparator() {
-        return new DefaultComparator();
+        Comparator<Student> comparator = new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                if (o1.name.compareTo(o2.name) == 0) {
+                    return Integer.compare(o1.age, o2.age);
+                } else return o1.name.compareTo(o2.name);
+            }
+        };
+        return comparator;
     }
 
     public String getName() {
@@ -50,7 +70,7 @@ public class Student {
         this.age = age;
     }
 
-    private static class ComparatorByName implements Comparator<Student> {
+/*    private static class ComparatorByName implements Comparator<Student> {
 
         @Override
         public int compare(Student o1, Student o2) {
@@ -74,5 +94,5 @@ public class Student {
                 return Integer.compare(o1.age, o2.age);
             } else return o1.name.compareTo(o2.name);
         }
-    }
+    }*/
 }
